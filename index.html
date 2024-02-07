@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>calculator</title>
+  <link href="normalize.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <form action="#" class="calculator" id="calculator-form">
+      <div class="calculator__inner">
+        <div class="calculator__main">
+          <div class="calculator__names">
+            <p class="calculator__name">Площадь</p>
+            <p class="calculator__name">Тип помещения</p>
+            <p class="calculator__name">Вид ремонта</p>
+          </div>
+
+          <div class="calculator__box">
+            <div class="calculator__range">
+              <div class="calculator__sum">
+                <span></span>
+                м²
+              </div>
+
+              <input class="calculator__range-input" type="range" min="0" max="100" value="45">
+            </div>
+
+            <div class="calculator__box-bottom">
+              <div class="calculator__box-column">
+                <select class="calculator__select" name="Типы помещения:" id="type-premises">
+                  <option value="Новостойка">Новостойка</option>
+                  <option value="Вторичка">Вторичка</option>
+                  <option value="Частный дом">Частный дом</option>
+                  <option value="Офис">Офис</option>
+                </select>
+
+                <select class="calculator__select" name="Вид ремонта:" id="type-repair">
+                  <option value="Капитальный «Под ключ»">Капитальный «Под ключ»</option>
+                  <option value="Дизайнерский">Дизайнерский</option>
+                  <option value="Черновой «White box»">Черновой «White box»</option>
+                  <option value="Косметический">Косметический</option>
+                </select>
+              </div>
+
+              <div class="calculator__box-column">
+                <p class="calculator__box-label">Включить в расчет</p>
+
+                <label class="calculator__label" for="cost-work">
+                  <input class="calculator__input--checkbox" type="checkbox" name="Стоимость работ" id="cost-work">
+
+                  <p class="calculator__text">Стоимость работ</p>
+                </label>
+
+                <label class="calculator__label" for="draft-materials">
+                  <input class="calculator__input--checkbox" type="checkbox" name="Черновые материалы"
+                    id="draft-materials">
+
+                  <p class="calculator__text">Черновые материалы</p>
+                </label>
+
+                <label class="calculator__label" for="finishing-materials">
+                  <input class="calculator__input--checkbox" type="checkbox" name="Чистовые материалы"
+                    id="finishing-materials">
+
+                  <p class="calculator__text">Чистовые материалы</p>
+                </label>
+
+                <label class="calculator__label" for="design-project">
+                  <input class="calculator__input--checkbox" type="checkbox" name="Дизайн проект" id="design-project">
+
+                  <p class="calculator__text">Дизайн проект</p>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="calculator__result">
+          <p class="calculator__result-text">
+            Предварительная стоимость:
+          </p>
+
+          <div class="calculator__result-sum"> <span>0</span> ₽</div>
+
+          <button type="button" class="calculator__result-btn">Рассчитать</button>
+        </div>
+
+        <div class="calculator__callback">
+          <p class="calculator__callback-text">
+            Каждый объект индивидуален. Для состовления точного сметного рассчета необходим выезд инжинера-сметчика.
+            Оставьте Ваш номер телефона, специалист свяжется с Вами в ближайшее время
+          </p>
+
+          <div class="calculator__callback-main">
+            <div class="calculator__callback-top">
+              <input class="calculator__input" type="text" placeholder="Ваше имя">
+              <input class="calculator__input" type="tel" placeholder="+7 ___ ___ __ __">
+            </div>
+
+            <label class="calculator__label" for="political-checkbox">
+              <input class="calculator__input--checkbox" type="checkbox" name="политика конфиденциальности"
+                id="political-checkbox">
+
+
+              <div class="calculator__political">
+                Я согласен с
+                <a href="http://" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="calculator__btn">Отправить</button>
+      </div>
+    </form>
+  </div>
+
+
+
+
+
+  <script src="main.js"></script>
+</body>
+
+</html>
