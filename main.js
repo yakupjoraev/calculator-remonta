@@ -1,3 +1,31 @@
+function dateInputs() {
+  // Получаем все элементы с атрибутом data-date-input
+  const dateInputs = document.querySelectorAll('[data-mask-input]');
+
+  if (!dateInputs) {
+    return null
+  }
+
+  // Проходимся по каждому элементу и создаем для него экземпляр IMask
+  dateInputs.forEach(dateInput => {
+    const mask = IMask(dateInput, {
+      mask: [
+        {
+          mask: '+{7}(000)000-00-00',
+          startsWith: '7',
+          prepare: value => (value[0] === '8' ? value.slice(1) : value)
+        },
+        {
+          mask: '8(000)000-00-00',
+          startsWith: '8',
+        }
+      ]
+    });
+  });
+
+}
+dateInputs();
+
 document.addEventListener('DOMContentLoaded', function () {
   // Инициализация начальных значений
   let squareMeterPrice = 9000; // Базовая стоимость за квадратный метр
@@ -11,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let finishingMaterialsCheckbox = document.getElementById('finishing-materials'); // Ссылка на чекбокс "Чистовые материалы"
   let resultSum = document.querySelector('.calculator__result-sum span'); // Ссылка на элемент для отображения общей стоимости
   let rangeInput = document.querySelector('.calculator__range-input'); // Ссылка на ползунок для выбора площади
-  let rangeSum = document.querySelector('.calculator__range .calculator__sum span'); // Ссылка на элемент для отображения выбранной площади
+  let rangeSum = document.querySelector('.calculator__range .calculator__sum-input'); // Ссылка на элемент для отображения выбранной площади
 
   // Устанавливаем начальное значение площади
   updateSquareMeterValue(squareMeters);
@@ -75,6 +103,17 @@ document.addEventListener('DOMContentLoaded', function () {
     updateTotalCost(); // Обновление общей стоимости при изменении значения площади
   });
 
+  // Обработчик изменения значения в поле ввода
+  document.querySelector('.calculator__sum-input').addEventListener('input', function () {
+    let newValue = parseInt(this.value);
+    if (newValue >= parseInt(rangeInput.min) && newValue <= parseInt(rangeInput.max)) {
+      squareMeters = newValue;
+      rangeInput.value = newValue;
+      rangeSum.textContent = newValue;
+      updateTotalCost();
+    }
+  });
+
   // Функции обновления значений
 
   // Функция для обновления типа помещения
@@ -115,6 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
         finishingMaterialsCheckbox.checked = false; // Снимаем галочку "Чистовые материалы"
         break;
       case "Косметический":
+        totalCost = 4500 * squareMeters;
         if (draftMaterialsCheckbox.checked) {
           totalCost += 800 * squareMeters;
         }
@@ -123,16 +163,23 @@ document.addEventListener('DOMContentLoaded', function () {
     updateTotalCost(); // Обновление общей стоимости после изменения вида ремонта
   }
 
+  function formatNumberWithSpaces(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+
   // Функция для обновления общей стоимости
   function updateTotalCost() {
-    resultSum.textContent = totalCost; // Обновление отображения общей стоимости
+    resultSum.textContent = formatNumberWithSpaces(totalCost); // Обновление отображения общей стоимости
   }
+
+  updateTotalCost();
 
   // Функция для обновления значения площади
   function updateSquareMeterValue(value) {
     squareMeters = value;
     totalCost = squareMeterPrice * squareMeters; // Пересчитываем общую стоимость
-    resultSum.textContent = totalCost; // Обновляем отображение общей стоимости
+    resultSum.textContent = formatNumberWithSpaces(totalCost); // Обновляем отображение общей стоимости с добавлением пробелов
+    document.querySelector('.calculator__sum-input').value = value; // Устанавливаем значение в поле ввода
   }
 
 

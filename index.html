@@ -24,11 +24,11 @@
           <div class="calculator__box">
             <div class="calculator__range">
               <div class="calculator__sum">
-                <span></span>
-                м²
+                <input class="calculator__sum-input" type="number" value="45" min="0" max="250">
+                <p>м²</p>
               </div>
 
-              <input class="calculator__range-input" type="range" min="0" max="100" value="45">
+              <input class="calculator__range-input" type="range" min="0" max="250" value="45">
             </div>
 
             <div class="calculator__box-bottom">
@@ -93,14 +93,14 @@
 
         <div class="calculator__callback">
           <p class="calculator__callback-text">
-            Каждый объект индивидуален. Для состовления точного сметного рассчета необходим выезд инжинера-сметчика.
+            Каждый объект индивидуален. Для составления точного сметного расчета необходим выезд инженера-сметчика.
             Оставьте Ваш номер телефона, специалист свяжется с Вами в ближайшее время
           </p>
 
           <div class="calculator__callback-main">
             <div class="calculator__callback-top">
               <input class="calculator__input" type="text" placeholder="Ваше имя">
-              <input class="calculator__input" type="tel" placeholder="+7 ___ ___ __ __">
+              <input class="calculator__input" type="tel" placeholder="+7 ___ ___ __ __" data-mask-input>
             </div>
 
             <label class="calculator__label" for="political-checkbox">
@@ -124,7 +124,7 @@
 
 
 
-
+  <script src="https://unpkg.com/imask"></script>
   <script src="main.js"></script>
 </body>
 
