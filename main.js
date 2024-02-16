@@ -373,5 +373,5 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Вызываем функцию для первоначального расчета при загрузке страницы
-  updateTotalCost();
+  // updateTotalCost();
 });
